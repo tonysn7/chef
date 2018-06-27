@@ -1,0 +1,30 @@
+#https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html list all playbook commands
+#ansible verbosity to view the debug output 
+#verbosity: -v for default output -vv adds al little more info -vvv shows more info ssh commands ansible using
+#variable in playbook 
+---
+#webservers setup
+- hosts: '{{host}}'
+  user: test456 / remote_user:
+  sudo: yes     / become: True
+  vars:
+     pkg1: httpd
+  vars_files:
+     - /home/test456/abc.yml
+  vars_prompt:
+     - prompt: enter the package name
+       name: pkg3
+       private: no
+  tasks:
+  - name: installing httpd package
+    yum: name={{pkg1}} state=installed
+  - name: installing your package
+    yum: name={{pkg2}} state=installed
+  - name: installing package
+    yum: name={{pkg3}} state=installed
+  - name: copy index.html
+    copy: src=/var/www/html/index.html dest=/var/www/html/index.html
+  - name: starting httpd package
+
+  
+  
